@@ -1,3 +1,5 @@
+
+
 money = float(input("how much do you earn in a month: $"))
 rent = float(input("how much is ypure rent?: $"))
 utilities = float(input("how ,much do you spend on utilities?: $"))
