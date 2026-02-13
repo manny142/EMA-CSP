@@ -1,45 +1,52 @@
-import random
-number = random.randint(1, 9)
-number = str(number)
-player = input("Enter your move (row and column)example : 1,2: ")
-tic = player.split(",")
-toe = tic[0] + tic[1]
-a = "      |                     |"
-b = "      |                     |"
-c = " _____|_____________________|______"
-d = "      |                     |"
-e = "      |                     |"
-f = " _____|_____________________|______"
-g = "      |                     |"
-h = "      |                     |"
-s = " _____|_____________________|______"
-# build board and place player's move
-board = [[" " for _ in range(3)] for _ in range(3)]
-try:
-    r = int(tic[0].strip()) - 1
-    c = int(tic[1].strip()) - 1
-    if 0 <= r < 3 and 0 <= c < 3:
-        board[r][c] = "X"
-    else:
-        print("Invalid move. Use numbers 1-3.")
-except Exception:
-    print("Invalid input. Use format row,col like 1,2")
-robot = "X"
-player = "O"
+def print_board(board):
+    # Display the 3x3 board with position numbers for empty spaces
+    for i in range(3):
+        print(f" {board[i*3] if board[i*3] != ' ' else i*3} | {board[i*3+1] if board[i*3+1] != ' ' else i*3+1} | {board[i*3+2] if board[i*3+2] != ' ' else i*3+2}")
+        if i < 2:
+            print("-----------")
 
-# Robot responds when player selects a cell
-if board[r][c] == " ":
-    board[r][c] = player
-    robot_moves = [(i, j) for i in range(3) for j in range(3) if board[i][j] == " "]
-    if robot_moves:
-        robot_response = random.choice(robot_moves)
-        board[robot_response[0]][robot_response[1]] = robot
-    # Robot chooses cell randomly that is empty and places its move there
-    print(robot_response)
-# print board
-print()
-for i, row in enumerate(board):
-    print(" " + " | ".join(row))
-    if i < 2:
-        print("---+---+---")
-print()
+def check_winner(board, player):
+    # Check all winning combinations by 3 rows, 3 cols, 2 diagonals
+    wins = [(0,1,2), (3,4,5), (6,7,8), (0,3,6), (1,4,7), (2,5,8), (0,4,8), (2,4,6)]
+    return any(board[a] == board[b] == board[c] == player for a,b,c in wins)
+
+def tic_tac_toe():
+    # Initialize empty board and start game loop
+    board = [' '] * 9
+    
+    while True:
+        print_board(board)
+        
+        # Player move: get valid position input
+        while True:
+            pos = int(input("Enter position (0-8): "))
+            if board[pos] == ' ':
+                board[pos] = 'X'
+                break
+        
+        # Check player win
+        if check_winner(board, 'X'):
+            print_board(board)
+            print("You win!")
+            break
+        
+        # Computer move: place at first available position
+        for i in range(9):
+            if board[i] == ' ':
+                board[i] = 'O'
+                break
+        
+        # Check computer win
+        if check_winner(board, 'O'):
+            print_board(board)
+            print("Computer wins!")
+            break
+        
+        # Check draw
+        if ' ' not in board:
+            print_board(board)
+            print("It's a draw!")
+            break
+
+# Run the game
+tic_tac_toe()
