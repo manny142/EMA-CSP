@@ -3,8 +3,8 @@
 
 int main(){
     const char* wing = " _________";
-    const char* topcar = " _|_____|_";
-    const char* car = "| oo____oo |";
+    const char* topcar = "  /|_____|\\";
+    const char* car = "/| oo___oo |\\";
    
     printf("%s\n", wing);
     printf("%s\n", topcar);
