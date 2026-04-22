@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>JavaScript notes</title>
+        <meta charset="UTF-8">
+        <style>
+            img{
+                width: 50%;
+            }
+            #imge-wrapper{
+                display: none;
+            }
+        </style>
+    <script>
+        function change_color(){
+            document.getElementById("change").style.color = "orange"
+        }
+        function(){
+            document.getElementById("imge-wrapper").style.display = "block"
+        }
+    </script>
+
+    </head>
+    <body>
+        <h1 id="change">JavaScript notes</h1>
+        <button onclick="change_color()">click me</button>
+        <button onclick="show_img()"id="show"> show image</button>
+        <div id="imge-wrapper"><img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_506,q_75,w_900/v1/clients/utahvalley/temp_c99a8c67_d5ca_41dd_ae83_9c5f674da77e_ef94838d-878d-4283-8262-88d4532e5344.jpg" alt="timp from plane"><img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_506,q_75,w_900/v1/clients/utahvalley/temp_c99a8c67_d5ca_41dd_ae83_9c5f674da77e_ef94838d-878d-4283-8262-88d4532e5344.jpg" alt="timp from plane"></div>
+    </body>
+</html>
